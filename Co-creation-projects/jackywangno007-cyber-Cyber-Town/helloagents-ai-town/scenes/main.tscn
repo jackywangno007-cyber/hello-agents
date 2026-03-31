@@ -1,0 +1,287 @@
+[gd_scene load_steps=12 format=3 uid="uid://btduw7j15ybpo"]
+
+[ext_resource type="Script" uid="uid://ctuh6lhih7yva" path="res://scripts/main.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/npc.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue_ui.tscn" id="4"]
+[ext_resource type="Texture2D" path="res://assets/map/market_stall.svg" id="5"]
+[ext_resource type="Texture2D" path="res://assets/map/library_house.svg" id="6"]
+[ext_resource type="Texture2D" path="res://assets/map/guard_post.svg" id="7"]
+[ext_resource type="Texture2D" path="res://assets/map/tree.svg" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/settings_panel.tscn" id="9"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.0666667, 0.101961, 0.145098, 0.68)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.807843, 0.694118, 0.47451, 0.5)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.109804, 0.137255, 0.160784, 0.78)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.113725, 0.14902, 0.121569, 0.55)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="Main" type="Node2D" unique_id=1194689310]
+script = ExtResource("1")
+
+[node name="BackgroundSky" type="Polygon2D" parent="."]
+z_index = -20
+color = Color(0.615686, 0.768627, 0.831373, 1)
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 220, 0, 220)
+
+[node name="Ground" type="Polygon2D" parent="."]
+z_index = -18
+color = Color(0.34902, 0.439216, 0.258824, 1)
+polygon = PackedVector2Array(0, 150, 1280, 120, 1280, 720, 0, 720)
+
+[node name="GardenLeft" type="Polygon2D" parent="."]
+z_index = -17
+color = Color(0.470588, 0.6, 0.356863, 0.84)
+polygon = PackedVector2Array(34, 252, 446, 242, 432, 426, 36, 438)
+
+[node name="GardenCenter" type="Polygon2D" parent="."]
+z_index = -17
+color = Color(0.454902, 0.580392, 0.352941, 0.82)
+polygon = PackedVector2Array(520, 232, 856, 220, 860, 430, 520, 446)
+
+[node name="GardenRight" type="Polygon2D" parent="."]
+z_index = -17
+color = Color(0.470588, 0.6, 0.356863, 0.84)
+polygon = PackedVector2Array(844, 238, 1232, 252, 1230, 436, 836, 426)
+
+[node name="MainRoad" type="Polygon2D" parent="."]
+z_index = -16
+color = Color(0.741176, 0.682353, 0.552941, 1)
+polygon = PackedVector2Array(0, 438, 1280, 420, 1280, 612, 0, 630)
+
+[node name="MainRoadEdgeTop" type="Line2D" parent="."]
+z_index = -15
+default_color = Color(0.843137, 0.788235, 0.647059, 0.95)
+width = 5.0
+points = PackedVector2Array(0, 438, 1280, 420)
+
+[node name="MainRoadEdgeBottom" type="Line2D" parent="."]
+z_index = -15
+default_color = Color(0.65098, 0.588235, 0.462745, 0.95)
+width = 5.0
+points = PackedVector2Array(0, 630, 1280, 612)
+
+[node name="CrossRoad" type="Polygon2D" parent="."]
+z_index = -14
+color = Color(0.780392, 0.721569, 0.584314, 0.98)
+polygon = PackedVector2Array(556, 176, 756, 168, 790, 620, 586, 638)
+
+[node name="CrossRoadEdgeLeft" type="Line2D" parent="."]
+z_index = -13
+default_color = Color(0.847059, 0.780392, 0.643137, 0.95)
+width = 4.0
+points = PackedVector2Array(556, 176, 586, 638)
+
+[node name="CrossRoadEdgeRight" type="Line2D" parent="."]
+z_index = -13
+default_color = Color(0.662745, 0.596078, 0.470588, 0.95)
+width = 4.0
+points = PackedVector2Array(756, 168, 790, 620)
+
+[node name="HUDRoot" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="PanelContainer" parent="HUDRoot"]
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 242.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="TopBarMargin" type="MarginContainer" parent="HUDRoot/TopBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 8
+
+[node name="TopBarColumn" type="VBoxContainer" parent="HUDRoot/TopBar/TopBarMargin"]
+layout_mode = 2
+
+[node name="TopBarTitle" type="Label" parent="HUDRoot/TopBar/TopBarMargin/TopBarColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Cyber Town"
+
+[node name="TopBarHint" type="Label" parent="HUDRoot/TopBar/TopBarMargin/TopBarColumn"]
+layout_mode = 2
+modulate = Color(0.831373, 0.862745, 0.901961, 0.78)
+theme_override_font_sizes/font_size = 10
+text = "WASD Move | E Talk"
+
+[node name="WorldButton" type="Button" parent="HUDRoot"]
+offset_left = 258.0
+offset_top = 16.0
+offset_right = 338.0
+offset_bottom = 48.0
+text = "World"
+
+[node name="MarketBuilding" type="Sprite2D" parent="."]
+z_index = -8
+position = Vector2(216, 194)
+scale = Vector2(1.04, 1.04)
+modulate = Color(0.95, 0.94, 0.9, 1)
+texture = ExtResource("5")
+
+[node name="LibraryBuilding" type="Sprite2D" parent="."]
+z_index = -8
+position = Vector2(690, 178)
+scale = Vector2(0.96, 0.96)
+modulate = Color(0.92, 0.95, 1, 1)
+texture = ExtResource("6")
+
+[node name="GuardPost" type="Sprite2D" parent="."]
+z_index = -8
+position = Vector2(1060, 186)
+scale = Vector2(0.9, 0.9)
+modulate = Color(0.92, 0.94, 0.88, 1)
+texture = ExtResource("7")
+
+[node name="MarketTag" type="PanelContainer" parent="."]
+z_index = -6
+offset_left = 150.0
+offset_top = 286.0
+offset_right = 278.0
+offset_bottom = 316.0
+theme_override_styles/panel = SubResource("2")
+
+[node name="MarketTagLabel" type="Label" parent="MarketTag"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Market"
+
+[node name="LibraryTag" type="PanelContainer" parent="."]
+z_index = -6
+offset_left = 632.0
+offset_top = 272.0
+offset_right = 752.0
+offset_bottom = 302.0
+theme_override_styles/panel = SubResource("2")
+
+[node name="LibraryTagLabel" type="Label" parent="LibraryTag"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Library"
+
+[node name="GuardTag" type="PanelContainer" parent="."]
+z_index = -6
+offset_left = 1010.0
+offset_top = 270.0
+offset_right = 1110.0
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("2")
+
+[node name="GuardTagLabel" type="Label" parent="GuardTag"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Gate"
+
+[node name="TreeLeft" type="Sprite2D" parent="."]
+z_index = -7
+position = Vector2(96, 198)
+texture = ExtResource("8")
+scale = Vector2(0.76, 0.76)
+
+[node name="TreeMid" type="Sprite2D" parent="."]
+z_index = -7
+position = Vector2(494, 216)
+texture = ExtResource("8")
+scale = Vector2(0.68, 0.68)
+
+[node name="TreeRight" type="Sprite2D" parent="."]
+z_index = -7
+position = Vector2(1220, 498)
+texture = ExtResource("8")
+scale = Vector2(0.74, 0.74)
+
+[node name="BenchArea" type="PanelContainer" parent="."]
+z_index = -9
+offset_left = 860.0
+offset_top = 500.0
+offset_right = 992.0
+offset_bottom = 546.0
+theme_override_styles/panel = SubResource("3")
+
+[node name="BenchShadow" type="Polygon2D" parent="."]
+z_index = -8
+color = Color(0.180392, 0.180392, 0.180392, 0.18)
+polygon = PackedVector2Array(870, 548, 994, 540, 1014, 560, 856, 568)
+
+[node name="FlowerPatch" type="Polygon2D" parent="."]
+z_index = -10
+color = Color(0.917647, 0.592157, 0.686275, 0.8)
+polygon = PackedVector2Array(890, 474, 938, 464, 986, 500, 950, 540, 884, 526, 860, 492)
+
+[node name="LampLeft" type="Polygon2D" parent="."]
+z_index = -9
+color = Color(0.286275, 0.219608, 0.164706, 1)
+polygon = PackedVector2Array(370, 336, 378, 336, 378, 430, 370, 430)
+
+[node name="LampGlowLeft" type="Polygon2D" parent="."]
+z_index = -10
+color = Color(0.968627, 0.847059, 0.533333, 0.24)
+polygon = PackedVector2Array(346, 320, 402, 320, 418, 364, 332, 364)
+
+[node name="LampRight" type="Polygon2D" parent="."]
+z_index = -9
+color = Color(0.286275, 0.219608, 0.164706, 1)
+polygon = PackedVector2Array(926, 338, 934, 338, 934, 432, 926, 432)
+
+[node name="LampGlowRight" type="Polygon2D" parent="."]
+z_index = -10
+color = Color(0.968627, 0.847059, 0.533333, 0.22)
+polygon = PackedVector2Array(902, 320, 958, 320, 974, 364, 888, 364)
+
+[node name="Player" parent="." unique_id=390263041 instance=ExtResource("2")]
+position = Vector2(436, 560)
+z_index = 30
+
+[node name="NPC_Alice" parent="." unique_id=1068561737 instance=ExtResource("3")]
+position = Vector2(246, 440)
+z_index = 32
+npc_id = "Alice"
+
+[node name="NPC_Bob" parent="." unique_id=1150062564 instance=ExtResource("3")]
+position = Vector2(690, 440)
+z_index = 32
+npc_id = "Bob"
+
+[node name="NPC_Charlie" parent="." unique_id=1460062565 instance=ExtResource("3")]
+position = Vector2(1060, 442)
+z_index = 32
+npc_id = "Charlie"
+
+[node name="DialogueUI" parent="." unique_id=1721122990 instance=ExtResource("4")]
+
+[node name="WorldEditor" parent="." instance=ExtResource("9")]

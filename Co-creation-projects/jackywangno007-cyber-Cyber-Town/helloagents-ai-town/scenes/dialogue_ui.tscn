@@ -1,0 +1,281 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/dialogue_ui.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/dialogue_emblem.svg" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.0745098, 0.0941176, 0.129412, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.890196, 0.74902, 0.458824, 0.85)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.113725, 0.145098, 0.196078, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.384314, 0.490196, 0.607843, 0.85)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.137255, 0.168627, 0.219608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.709804, 0.65098, 0.458824, 0.9)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.917647, 0.678431, 0.286275, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.266667, 0.313726, 0.392157, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.12549, 0.152941, 0.196078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.486275, 0.560784, 0.678431, 0.9)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="DialogueUI" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.0117647, 0.0117647, 0.0235294, 0.45)
+
+[node name="PanelContainer" type="PanelContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -260.0
+offset_right = 390.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Root/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="MainColumn" type="VBoxContainer" parent="Root/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="HeaderRow" type="HBoxContainer" parent="Root/PanelContainer/MarginContainer/MainColumn"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Emblem" type="TextureRect" parent="Root/PanelContainer/MarginContainer/MainColumn/HeaderRow"]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HeaderText" type="VBoxContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NPCNameLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/HeaderRow/HeaderText"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "正在与 NPC 交谈"
+
+[node name="NPCHintLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/HeaderRow/HeaderText"]
+layout_mode = 2
+modulate = Color(0.788235, 0.827451, 0.866667, 0.88)
+text = "聊天、任务与关系会在这里同步更新。"
+
+[node name="InfoRow" type="HBoxContainer" parent="Root/PanelContainer/MarginContainer/MainColumn"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RelationshipCard" type="PanelContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/RelationshipCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/RelationshipCard/MarginContainer"]
+layout_mode = 2
+
+[node name="RelationshipTitleLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/RelationshipCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "关系状态"
+
+[node name="RelationshipStageLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/RelationshipCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "关系阶段：--"
+
+[node name="RelationshipScoreLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/RelationshipCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "好感度：-- / 100"
+
+[node name="TaskCard" type="PanelContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow"]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/TaskCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/TaskCard/MarginContainer"]
+layout_mode = 2
+
+[node name="TaskTitleLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/TaskCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "当前任务：暂无任务"
+
+[node name="TaskStatusLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/TaskCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "状态：未解锁"
+
+[node name="TaskDescriptionLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/TaskCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+autowrap_mode = 3
+modulate = Color(0.811765, 0.854902, 0.898039, 0.9)
+text = "任务说明：继续聊天来了解对方需要什么帮助。"
+
+[node name="TaskFeedbackLabel" type="Label" parent="Root/PanelContainer/MarginContainer/MainColumn/InfoRow/TaskCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+autowrap_mode = 3
+modulate = Color(0.952941, 0.807843, 0.447059, 1)
+text = ""
+
+[node name="MemoryCard" type="PanelContainer" parent="Root/PanelContainer/MarginContainer/MainColumn"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/MemoryCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="MemoryHighlightsLabel" type="RichTextLabel" parent="Root/PanelContainer/MarginContainer/MainColumn/MemoryCard/MarginContainer"]
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
+autowrap_mode = 3
+bbcode_enabled = false
+scroll_active = false
+text = ""
+
+[node name="ChatCard" type="PanelContainer" parent="Root/PanelContainer/MarginContainer/MainColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/ChatCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="DialogueLog" type="RichTextLabel" parent="Root/PanelContainer/MarginContainer/MainColumn/ChatCard/MarginContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+autowrap_mode = 3
+bbcode_enabled = false
+scroll_following = true
+scroll_active = true
+
+[node name="InputRow" type="HBoxContainer" parent="Root/PanelContainer/MarginContainer/MainColumn"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MessageInput" type="LineEdit" parent="Root/PanelContainer/MarginContainer/MainColumn/InputRow"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("6")
+theme_override_styles/focus = SubResource("6")
+placeholder_text = "输入你想说的话，推进关系或任务..."
+
+[node name="ButtonRow" type="HBoxContainer" parent="Root/PanelContainer/MarginContainer/MainColumn/InputRow"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SendButton" type="Button" parent="Root/PanelContainer/MarginContainer/MainColumn/InputRow/ButtonRow"]
+custom_minimum_size = Vector2(110, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("4")
+theme_override_styles/hover = SubResource("4")
+theme_override_styles/pressed = SubResource("4")
+text = "发送"
+
+[node name="CloseButton" type="Button" parent="Root/PanelContainer/MarginContainer/MainColumn/InputRow/ButtonRow"]
+custom_minimum_size = Vector2(110, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("5")
+theme_override_styles/hover = SubResource("5")
+theme_override_styles/pressed = SubResource("5")
+text = "关闭"

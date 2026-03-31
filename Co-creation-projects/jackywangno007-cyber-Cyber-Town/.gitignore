@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+backend/.env
+backend/memory_data/
+backend/world_data/
+backend/__pycache__/
+
+helloagents-ai-town/.godot/
+helloagents-ai-town/.import/
+helloagents-ai-town/export_presets.cfg
+
+.DS_Store
+Thumbs.db
